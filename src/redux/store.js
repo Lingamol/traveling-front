@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -8,13 +8,14 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 // import { tasksReducer } from './tasks/slice';
-import { authReducer } from "./auth/slice";
-import { contactsReducer } from "./contacts/contactsSlice";
-import { filtersReducer } from "./filters/filtersSlice";
-import { petsReducer } from "./pets/petsSlice";
+import { authReducer } from './auth/slice';
+import { contactsReducer } from './contacts/contactsSlice';
+import { filtersReducer } from './filters/filtersSlice';
+import { petsReducer } from './pets/petsSlice';
+import { themesReducer } from './themes/themesSlice';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -26,9 +27,9 @@ const middleware = [
 
 // Persisting token field from auth slice to localstorage
 const authPersistConfig = {
-  key: "auth",
+  key: 'auth',
   storage,
-  whitelist: ["token"],
+  whitelist: ['token'],
 };
 
 export const store = configureStore({
@@ -38,6 +39,7 @@ export const store = configureStore({
     contacts: contactsReducer,
     filters: filtersReducer,
     pets: petsReducer,
+    themes: themesReducer,
   },
   middleware,
   // devTools: process.env.NODE_ENV === 'development',

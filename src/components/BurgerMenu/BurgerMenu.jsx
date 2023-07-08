@@ -1,6 +1,6 @@
-import { GiHamburgerMenu } from "react-icons/gi";
-import { GrFormClose } from "react-icons/gr";
-import { MenuButton, HamburgerIcon } from "./BurgerMenu.styled";
+// import { GiHamburgerMenu } from "react-icons/gi";
+// import { GrFormClose } from "react-icons/gr";
+import { MenuButton, HamburgerIcon } from './BurgerMenu.styled';
 const BurgerMenu = ({ ...props }) => {
   return (
     <MenuButton {...props} className="menuButton">

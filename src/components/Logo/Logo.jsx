@@ -1,9 +1,11 @@
-import { LogoLink, Styled } from "./Logo.styled";
-
+import { LogoLink, Styled } from './Logo.styled';
+import { useTheme } from '@emotion/react';
 const Logo = () => {
+  const theme = useTheme();
+  console.log('theme', theme);
   return (
     <LogoLink href="/">
-      Day<Styled>Organizer</Styled>
+      Happy<Styled>Travel</Styled>
     </LogoLink>
   );
 };

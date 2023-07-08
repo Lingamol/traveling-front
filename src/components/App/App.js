@@ -16,6 +16,11 @@ import { useAuth } from 'hooks';
 import { lazy } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { ThemeProvider } from '@emotion/react';
+import { darkTheme, lightTheme } from 'theme/theme';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { selectTheme } from 'redux/themes/selectors';
+
 // import Tasks from "pages/Tasks/Tasks";
 // import Weather from "pages/Weather/Weather";
 // import Movies from "pages/Movies/Movies";
@@ -33,6 +38,9 @@ const UserPage = lazy(() => import('pages/UserPage'));
 // );
 
 function App() {
+  const isLightTheme = useSelector(selectTheme);
+  // console.log(theme1.toString() === 'lightTheme ');
+
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
@@ -43,53 +51,57 @@ function App() {
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
-    <div className="App">
-      <header className="App-header">
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<HomePage />} />
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute
-                  component={<RegisterPage />}
-                  redirectTo="/user"
-                />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute component={<LoginPage />} redirectTo="/user" />
-              }
-            />
-            <Route
-              path="/user"
-              element={
-                <PrivateRoute component={<UserPage />} redirectTo="/login" />
-                // isLoggedIn ? (
-                //   <PrivateRoute component={<UserPage />} />
-                // ) : (
-                //   <RestrictedRoute component={<HomePage />} />
-                // )
-              }
-            />
-            <Route
-              path="/Contacts"
-              element={
-                <PrivateRoute
-                  component={<ContactsPage />}
-                  redirectTo="/login"
-                />
-              }
-            />
-            <Route
-              path="/Tasks"
-              element={
-                <PrivateRoute component={<TasksPage />} redirectTo="/login" />
-              }
-            />
-            {/* <Route
+    <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
+      <div className="App">
+        <header className="App-header">
+          <Routes>
+            <Route path="/" element={<SharedLayout />}>
+              <Route index element={<HomePage />} />
+              <Route
+                path="/register"
+                element={
+                  <RestrictedRoute
+                    component={<RegisterPage />}
+                    redirectTo="/user"
+                  />
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <RestrictedRoute
+                    component={<LoginPage />}
+                    redirectTo="/user"
+                  />
+                }
+              />
+              <Route
+                path="/user"
+                element={
+                  <PrivateRoute component={<UserPage />} redirectTo="/login" />
+                  // isLoggedIn ? (
+                  //   <PrivateRoute component={<UserPage />} />
+                  // ) : (
+                  //   <RestrictedRoute component={<HomePage />} />
+                  // )
+                }
+              />
+              <Route
+                path="/Contacts"
+                element={
+                  <PrivateRoute
+                    component={<ContactsPage />}
+                    redirectTo="/login"
+                  />
+                }
+              />
+              <Route
+                path="/Tasks"
+                element={
+                  <PrivateRoute component={<TasksPage />} redirectTo="/login" />
+                }
+              />
+              {/* <Route
               path="/weather"
               element={
                 <PrivateRoute component={<WeatherPage />} redirectTo="/login" />
@@ -101,9 +113,9 @@ function App() {
                 <PrivateRoute component={<MoviesPage />} redirectTo="/login" />
               }
             /> */}
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-          {/* <Route path="/" element={<SharedLayout />}>
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+            {/* <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
             <Route
               path="/register"
@@ -122,15 +134,16 @@ function App() {
             <Route path="/movies" element={<MoviesPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route> */}
-          {/* <Route path="/admin" element={<AdminLayout />}>
+            {/* <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="sales" element={<Sales />} />
             <Route path="customers" element={<Customers />} />
           </Route> */}
-        </Routes>
-      </header>
-      <ToastContainer transition={Flip} />
-    </div>
+          </Routes>
+        </header>
+        <ToastContainer transition={Flip} />
+      </div>
+    </ThemeProvider>
   );
 }
 

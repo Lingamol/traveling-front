@@ -1,0 +1,51 @@
+const media = {
+  mobile: "@media(max-width: 766px)",
+  mobileAndTablet: "@media(max-width: 1279px)",
+  tablet: "@media(min-width: 767px) and (max-width: 1279px)",
+  tabletAndDesktop: "@media(min-width: 767px)",
+  desktop: "@media(min-width: 1280px)",
+  desktopHeight: "@media(min-height: 800px)",
+  desktop2kHeight: "@media(min-height: 1000px)",
+  mobileHeight: "@media(max-height: 900px)",
+  tabletHeight: "@media(max-height: 1000px)",
+};
+
+const colors = {
+  accentBlue: "#2196f3",
+  accent: "#F59256",
+  background: "#FDF7F2",
+  accentButton: "#FF6101",
+  black: "#111111",
+  newsText: "#111321",
+  maleColor: "#23C2EF",
+  femaleColor: "#FF8787",
+  accentHover: "#FF6101",
+  blue: "#3091EB",
+  white: "#FFFFFF",
+  gray: "rgba(17, 17, 17, 0.6)",
+  gradient: "linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)",
+  shadow: "rgba(49, 21, 4, 0.07)",
+};
+
+const fontWeights = {
+  regular: 400,
+  medium: 500,
+  bold: 700,
+};
+
+const optionsToast = {
+  position: "top-right",
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
+};
+const transFunc = {
+  td250CB: "250ms cubic-bezier(0.4, 0, 0.2, 1)",
+  td250EinO: "250ms ease-in-out",
+};
+
+export { media, colors, fontWeights, optionsToast, transFunc };
